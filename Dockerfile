@@ -16,6 +16,7 @@ RUN apk update && apk upgrade \
 
     && apk add --no-cache \
     nodejs \
+    fcgi \
 
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 
