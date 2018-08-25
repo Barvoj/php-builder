@@ -22,7 +22,14 @@ RUN apk add --no-cache --virtual .build-deps curl
 RUN apk add --no-cache \
     nodejs \
     nodejs-npm \
-    fcgi
+    fcgi \
+    zlib-dev \
+    icu-dev \
+    && docker-php-ext-install bcmath \
+    mbstring \
+    calendar \
+    zip \
+    intl
 
 # Install gulp
 RUN npm config set cache /cache/npm \
@@ -41,6 +48,7 @@ RUN curl -Ls "https://github.com/phpstan/phpstan/releases/download/${PHPSTAN_VER
 
 # Composer speedup and tools
 RUN composer global require hirak/prestissimo:@stable \
+    "nette/tester=*" \
     "squizlabs/php_codesniffer=*" \
     "jakub-onderka/php-parallel-lint=*"
 
